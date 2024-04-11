@@ -21,7 +21,7 @@ steps:
       #!/bin/sh -e
       docker push "${_GAR_REPOSITORY}/${_IMAGE_NAME}:${COMMIT_SHA}"
 
-      if [ "$BRANCH_NAME" = "master" ]; then
+      if [ "$BRANCH_NAME" = "billhop-custom" ]; then
         docker tag \
           "${_GAR_REPOSITORY}/${_IMAGE_NAME}:${COMMIT_SHA}" \
           "${_GAR_REPOSITORY}/${_IMAGE_NAME}:latest"
