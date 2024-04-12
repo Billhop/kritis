@@ -8,8 +8,8 @@ COPY ./cmd ./cmd
 RUN CGO_ENABLED=0 GOOS=linux go build -o /out/kritis-signer ./cmd/kritis/signer
 
 # Stage 2 - Build the final image.
-# Based on busybox because of the need of `sh`, `cat`, and `openssl` with root certificates.
-FROM debian:12-slim@sha256:3d5df92588469a4c503adbead0e4129ef3f88e223954011c2169073897547cac
+# Based on debian because of the need of `sh`, `cat`, and `openssl` with root certificates.
+FROM gcr.io/google-appengine/debian10:latest
 WORKDIR /
 COPY --from=build-stage /out/kritis-signer /kritis-signer
 ENTRYPOINT ["/kritis-signer"]
